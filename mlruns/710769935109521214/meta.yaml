@@ -1,0 +1,9 @@
+artifact_location: file:D:\retailpulse\mlruns/710769935109521214
+creation_time: 1783133376616
+effective_trace_archival_retention: null
+experiment_id: '710769935109521214'
+last_update_time: 1783133376616
+lifecycle_stage: active
+name: demand_forecasting
+trace_location: null
+workspace: default

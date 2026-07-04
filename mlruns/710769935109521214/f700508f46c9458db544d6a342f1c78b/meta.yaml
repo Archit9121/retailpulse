@@ -1,0 +1,14 @@
+artifact_uri: file:D:\retailpulse\mlruns/710769935109521214/f700508f46c9458db544d6a342f1c78b/artifacts
+end_time: 1783133378577
+entry_point_name: ''
+experiment_id: '710769935109521214'
+lifecycle_stage: active
+run_id: f700508f46c9458db544d6a342f1c78b
+run_name: prophet_config_3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783133378302
+status: 3
+tags: []
+user_id: asus

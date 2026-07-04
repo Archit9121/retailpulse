@@ -1,0 +1,14 @@
+artifact_uri: file:D:\retailpulse\mlruns/710769935109521214/418b60cc63c242218f9517e2fca83772/artifacts
+end_time: 1783133377222
+entry_point_name: ''
+experiment_id: '710769935109521214'
+lifecycle_stage: active
+run_id: 418b60cc63c242218f9517e2fca83772
+run_name: seasonal_naive_baseline
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783133377151
+status: 3
+tags: []
+user_id: asus

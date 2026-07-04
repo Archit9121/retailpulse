@@ -1,0 +1,11 @@
+feature,mean_abs_shap
+recency_days,0.45978466
+avg_days_between_purchases,0.37792385
+n_distinct_products,0.1838311
+frequency,0.1192641
+monetary_per_day,0.11320753
+total_quantity,0.078487456
+monetary,0.07495689
+tenure_days,0.052735828
+avg_order_value,0.051491685
+is_uk,0.0

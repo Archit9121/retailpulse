@@ -1,0 +1,14 @@
+artifact_uri: file:D:\retailpulse\mlruns/676170482539196976/2eee9e8c7762463282413516f5fb3e27/artifacts
+end_time: 1783133300792
+entry_point_name: ''
+experiment_id: '676170482539196976'
+lifecycle_stage: active
+run_id: 2eee9e8c7762463282413516f5fb3e27
+run_name: dbscan_eps0.80
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783133300744
+status: 3
+tags: []
+user_id: asus

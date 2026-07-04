@@ -1,0 +1,9 @@
+artifact_location: file:D:\retailpulse\mlruns/676170482539196976
+creation_time: 1783133286410
+effective_trace_archival_retention: null
+experiment_id: '676170482539196976'
+last_update_time: 1783133286410
+lifecycle_stage: active
+name: customer_segmentation
+trace_location: null
+workspace: default

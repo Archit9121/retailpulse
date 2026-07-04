@@ -1,0 +1,14 @@
+artifact_uri: file:D:\retailpulse\mlruns/676170482539196976/6d6221b8c1f0433c9a1dc82f27e9b105/artifacts
+end_time: 1783133294762
+entry_point_name: ''
+experiment_id: '676170482539196976'
+lifecycle_stage: active
+run_id: 6d6221b8c1f0433c9a1dc82f27e9b105
+run_name: kmeans_k10
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783133294713
+status: 3
+tags: []
+user_id: asus

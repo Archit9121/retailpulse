@@ -1,0 +1,5 @@
+column,method,value,drifted
+n_customers,K-S p_value,0.9896002695907268,False
+n_invoices,K-S p_value,0.8309301494829615,False
+quantity,K-S p_value,0.7798230937638966,False
+revenue,K-S p_value,0.3150750274176011,False

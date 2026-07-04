@@ -1,0 +1,14 @@
+artifact_uri: file:D:\retailpulse\mlruns/710769935109521214/93659693ff2646ec9611cfa1f1b82bad/artifacts
+end_time: 1783133441928
+entry_point_name: ''
+experiment_id: '710769935109521214'
+lifecycle_stage: active
+run_id: 93659693ff2646ec9611cfa1f1b82bad
+run_name: day8_ensemble
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783133435186
+status: 3
+tags: []
+user_id: asus

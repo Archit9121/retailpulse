@@ -1,0 +1,10 @@
+artifact_location: file:D:\retailpulse\mlruns/136260925761413299/models/m-c5a20f1e180a40499ca2ec00619e89df/artifacts
+creation_timestamp: 1783133453382
+experiment_id: '136260925761413299'
+last_updated_timestamp: 1783133457376
+model_id: m-c5a20f1e180a40499ca2ec00619e89df
+model_type: null
+name: churn_model
+source_run_id: 2dab8d1f901a4f4895ef28be773936ec
+status: 2
+status_message: null

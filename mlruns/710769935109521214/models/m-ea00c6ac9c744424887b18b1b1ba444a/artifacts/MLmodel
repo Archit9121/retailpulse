@@ -1,0 +1,21 @@
+artifact_path: file:D:\retailpulse\mlruns/710769935109521214/models/m-ea00c6ac9c744424887b18b1b1ba444a/artifacts
+flavors:
+  prophet:
+    code: null
+    data: model.pr
+    model_type: Prophet
+    prophet_version: 1.3.0
+  python_function:
+    data: model.pr
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.prophet
+    python_version: 3.14.5
+mlflow_version: 3.14.0
+model_id: m-ea00c6ac9c744424887b18b1b1ba444a
+model_size_bytes: 140956
+model_uuid: m-ea00c6ac9c744424887b18b1b1ba444a
+prompts: null
+run_id: 54cdf868a36c42868976c5c2324cbf50
+utc_time_created: '2026-07-04 02:49:38.991037'

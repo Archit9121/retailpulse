@@ -1,0 +1,51 @@
+
+# data processing
+pandas
+numpy
+scikit-learn
+openpyxl
+
+# Forecasting
+prophet
+torch
+pytorch-lightning
+
+# Statistical time-series diagnostics
+statsmodels
+
+# UK holiday calendar 
+holidays
+
+# Dashboard
+streamlit
+
+# Experiment tracking
+mlflow
+
+# Hyperparameter tuning
+optuna
+
+# Explainability
+shap
+
+# Churn model
+xgboost
+
+# Monitoring
+evidently
+prometheus-client
+
+# Visualization
+matplotlib
+seaborn
+
+# Statistics 
+scipy
+
+# PDF report generation
+reportlab
+pypdf
+
+# Notebook execution
+jupyter
+

@@ -1,0 +1,9 @@
+artifact_location: file:D:\retailpulse\mlruns/136260925761413299
+creation_time: 1783133452569
+effective_trace_archival_retention: null
+experiment_id: '136260925761413299'
+last_update_time: 1783133452569
+lifecycle_stage: active
+name: churn_prediction
+trace_location: null
+workspace: default

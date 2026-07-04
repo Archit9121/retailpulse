@@ -1,0 +1,14 @@
+artifact_uri: file:D:\retailpulse\mlruns/136260925761413299/2dab8d1f901a4f4895ef28be773936ec/artifacts
+end_time: 1783133457427
+entry_point_name: ''
+experiment_id: '136260925761413299'
+lifecycle_stage: active
+run_id: 2dab8d1f901a4f4895ef28be773936ec
+run_name: day9_churn_xgboost
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783133452718
+status: 3
+tags: []
+user_id: asus

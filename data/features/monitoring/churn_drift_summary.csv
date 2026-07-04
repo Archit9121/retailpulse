@@ -1,0 +1,8 @@
+column,method,value,drifted
+avg_order_value,Wasserstein distance (normed),0.009516452512778006,False
+frequency,Wasserstein distance (normed),0.05112800351993188,False
+monetary,Wasserstein distance (normed),0.023905263269492914,False
+monetary_per_day,Wasserstein distance (normed),0.026994198921579903,False
+n_distinct_products,Wasserstein distance (normed),0.04376598256268041,False
+recency_days,Wasserstein distance (normed),0.2716775842795804,True
+tenure_days,Wasserstein distance (normed),0.4790572150048016,True

@@ -1,0 +1,14 @@
+artifact_uri: file:D:\retailpulse\mlruns/136260925761413299/839c8698cd9c4d33986b958c4d2e49a6/artifacts
+end_time: 1783133477782
+entry_point_name: ''
+experiment_id: '136260925761413299'
+lifecycle_stage: active
+run_id: 839c8698cd9c4d33986b958c4d2e49a6
+run_name: optuna_baseline_features
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783133473344
+status: 3
+tags: []
+user_id: asus
