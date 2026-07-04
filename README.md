@@ -1,19 +1,26 @@
 # RetailPulse
 
-RetailPulse is a end-to-end retail analytics platform.
+RetailPulse is an end-to-end retail analytics platform.
 It uses the UCI Online Retail II dataset to deliver forecasting, churn prediction, customer segmentation, inventory optimization, drift monitoring, orchestration, and a production-style Streamlit dashboard.
+
+## 🚀 Live Demo
+
+**Streamlit App:** https://retailpulse-vev9kdlnwcflmtv7pefox9.streamlit.app/
+
+> Explore demand forecasting, customer segmentation, churn prediction, inventory optimization, drift monitoring, and interactive reports directly in the web application.
 
 ## 1. Project summary
 
 - Dataset: UCI Online Retail II (1,067,371 transactions, UK gift retailer, Dec 2009 to Dec 2011)
+  https://archive.ics.uci.edu/dataset/502/online+retail+ii
 - Core outputs:
-	- demand forecasting (Prophet + LSTM + day-type-weighted ensemble)
-	- churn modeling (XGBoost + SHAP + Optuna)
-	- customer segmentation (RFM + K-Means, 6 segments)
-	- inventory policy optimization (ABC + safety stock + reorder point + EOQ)
-	- drift monitoring (Evidently)
-	- Airflow-compatible retraining task logic
-	- 5-page dashboard with PDF export
+    - demand forecasting (Prophet + LSTM + day-type-weighted ensemble)
+    - churn modeling (XGBoost + SHAP + Optuna)
+    - customer segmentation (RFM + K-Means, 6 segments)
+    - inventory policy optimization (ABC + safety stock + reorder point + EOQ)
+    - drift monitoring (Evidently)
+    - Airflow-compatible retraining task logic
+    - 5-page dashboard with PDF export
 
 ## 2. Achieved metrics
 
@@ -24,7 +31,6 @@ It uses the UCI Online Retail II dataset to deliver forecasting, churn predictio
 | Churn Precision@Top20% | 0.863 to 0.872 |
 | Customer segments | 6 |
 
-Known gap note: this project intentionally reports real offline metrics from current runs, not inflated estimates.
 
 ## 3. Architecture
 
@@ -172,16 +178,21 @@ Airflow-independent task logic is in `src/orchestration/pipeline_tasks.py`.
 
 ### Dashboard
 
+Run locally:
+
 ```bash
-python -m streamlit run src/dashboard/app.py
+streamlit run src/dashboard/app.py
 ```
+
+Or access the deployed application:
+
+**🌐 Live Demo:** https://retailpulse-vev9kdlnwcflmtv7pefox9.streamlit.app/
 
 Pages:
 - Home
 - Demand Forecasting
-- Customers and Churn
+- Customers & Churn
 - Inventory
-- Alerts and Monitoring
+- Alerts & Monitoring
 - Reports
-
 
