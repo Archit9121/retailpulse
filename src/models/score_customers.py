@@ -13,6 +13,7 @@ import pandas as pd
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
 FEATURES_DIR = ROOT_DIR / "data" / "features"
+LOCAL_CHURN_MODEL_DIR = FEATURES_DIR / "churn_artifacts" / "models" / "tuned_churn_model"
 
 
 def load_best_churn_model(run_name: str = "day11_churn_tuning") -> tuple:
@@ -29,10 +30,18 @@ def load_best_churn_model(run_name: str = "day11_churn_tuning") -> tuple:
     Raises:
         ValueError: If no matching run with a logged model is found.
     """
+    if LOCAL_CHURN_MODEL_DIR.exists():
+        model = mlflow.xgboost.load_model(str(LOCAL_CHURN_MODEL_DIR))
+        feature_names = model.get_booster().feature_names
+        return model, feature_names
+
     mlflow.set_tracking_uri(f"file:{ROOT_DIR / 'mlruns'}")
     experiment = mlflow.get_experiment_by_name("churn_prediction")
     if experiment is None:
-        raise ValueError("No churn_prediction experiment found; run Day 9-11's pipelines first.")
+        raise ValueError(
+            "No local tuned churn model found and no churn_prediction experiment found; "
+            "run Day 11 tuning first."
+        )
 
     runs = mlflow.search_runs(
         experiment_ids=[experiment.experiment_id],

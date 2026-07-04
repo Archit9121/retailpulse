@@ -1,0 +1,14 @@
+artifact_uri: file:D:\retailpulse\mlruns/136260925761413299/475b4a7adc9d42198da6e6a98a47d28c/artifacts
+end_time: 1783136273587
+entry_point_name: ''
+experiment_id: '136260925761413299'
+lifecycle_stage: active
+run_id: 475b4a7adc9d42198da6e6a98a47d28c
+run_name: optuna_enriched_features
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783136266482
+status: 3
+tags: []
+user_id: asus

@@ -1,0 +1,23 @@
+artifact_path: file:D:\retailpulse\mlruns/710769935109521214/models/m-0fd4278070f844cc9ce4d73bdbb5b771/artifacts
+flavors:
+  python_function:
+    config:
+      device: null
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pytorch
+    pickle_module_name: mlflow.pytorch.pickle_module
+    python_version: 3.14.5
+  pytorch:
+    code: null
+    model_data: data
+    pytorch_version: 2.12.1+cpu
+mlflow_version: 3.14.0
+model_id: m-0fd4278070f844cc9ce4d73bdbb5b771
+model_size_bytes: 24985
+model_uuid: m-0fd4278070f844cc9ce4d73bdbb5b771
+prompts: null
+run_id: cddc99d17e6e4be28a252d9370bbf269
+utc_time_created: '2026-07-04 03:34:56.030081'

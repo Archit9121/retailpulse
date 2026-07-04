@@ -26,6 +26,10 @@ from src.dashboard.data_loader import (  # noqa: E402
     load_shap_importance,
 )
 
+LOCAL_CHURN_MODEL_DIR = (
+    ROOT_DIR / "data" / "features" / "churn_artifacts" / "models" / "tuned_churn_model"
+)
+
 st.set_page_config(page_title="Customers & Churn — RetailPulse", page_icon="👥", layout="wide")
 st.title("👥 Customer Segmentation & Churn Risk")
 
@@ -116,20 +120,41 @@ st.subheader("Why is this customer at risk?")
 
 @st.cache_resource
 def _load_churn_model_and_features():
+    if LOCAL_CHURN_MODEL_DIR.exists():
+        try:
+            model = mlflow.xgboost.load_model(str(LOCAL_CHURN_MODEL_DIR))
+            return model, model.get_booster().feature_names
+        except Exception:
+            # Fall back to MLflow tracking lookup if the local artifact is invalid.
+            pass
+
     mlflow.set_tracking_uri(f"file:{ROOT_DIR / 'mlruns'}")
     experiment = mlflow.get_experiment_by_name("churn_prediction")
-    runs = mlflow.search_runs(
-        experiment_ids=[experiment.experiment_id],
-        filter_string="tags.mlflow.runName = 'day11_churn_tuning'",
-        order_by=["start_time DESC"],
-        max_results=1,
-    )
-    model = mlflow.xgboost.load_model(f"runs:/{runs.iloc[0]['run_id']}/tuned_churn_model")
-    return model, model.get_booster().feature_names
+    if experiment is None:
+        return None, []
+    try:
+        runs = mlflow.search_runs(
+            experiment_ids=[experiment.experiment_id],
+            filter_string="tags.mlflow.runName = 'day11_churn_tuning'",
+            order_by=["start_time DESC"],
+            max_results=1,
+        )
+        if runs.empty:
+            return None, []
+        model = mlflow.xgboost.load_model(f"runs:/{runs.iloc[0]['run_id']}/tuned_churn_model")
+        return model, model.get_booster().feature_names
+    except Exception:
+        return None, []
 
 
 model, feature_names = _load_churn_model_and_features()
 shap_importance = load_shap_importance()
+
+if model is None:
+    st.info(
+        "Run `python -m src.models.run_churn_tuning` to train and save the tuned churn model."
+    )
+    st.stop()
 
 selected_id = st.selectbox(
     "Customer ID", options=filtered["customer_id"].head(200).tolist(), key="customer_selector"

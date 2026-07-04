@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import logging
 import os
+import shutil
 from pathlib import Path
 
 os.environ.setdefault("MLFLOW_ALLOW_FILE_STORE", "true")
@@ -30,6 +31,7 @@ logger = logging.getLogger(__name__)
 ROOT_DIR = Path(__file__).resolve().parents[2]
 PROCESSED_DIR = ROOT_DIR / "data" / "processed"
 FEATURES_DIR = ROOT_DIR / "data" / "features"
+LOCAL_CHURN_MODEL_DIR = FEATURES_DIR / "churn_artifacts" / "models" / "tuned_churn_model"
 N_TRIALS = 60
 AUC_TARGET = 0.88
 PRECISION_TARGET = 0.75
@@ -140,6 +142,10 @@ def main() -> None:
             "best_test_precision_at_top20pct", best_result["metrics"]["precision_at_top20pct"]
         )
         mlflow.xgboost.log_model(best_result["model"], name="tuned_churn_model")
+        if LOCAL_CHURN_MODEL_DIR.exists():
+            shutil.rmtree(LOCAL_CHURN_MODEL_DIR)
+        LOCAL_CHURN_MODEL_DIR.parent.mkdir(parents=True, exist_ok=True)
+        mlflow.xgboost.save_model(best_result["model"], path=str(LOCAL_CHURN_MODEL_DIR))
 
         auc_met = best_result["metrics"]["auc_roc"] >= AUC_TARGET
         precision_met = best_result["metrics"]["precision_at_top20pct"] >= PRECISION_TARGET

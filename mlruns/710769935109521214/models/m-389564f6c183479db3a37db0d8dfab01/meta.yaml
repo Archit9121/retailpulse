@@ -1,0 +1,10 @@
+artifact_location: file:D:\retailpulse\mlruns/710769935109521214/models/m-389564f6c183479db3a37db0d8dfab01/artifacts
+creation_timestamp: 1783136000710
+experiment_id: '710769935109521214'
+last_updated_timestamp: 1783136001507
+model_id: m-389564f6c183479db3a37db0d8dfab01
+model_type: null
+name: prophet_model
+source_run_id: d5afb38abf884c3f9dd3d33fbb3d796e
+status: 2
+status_message: null

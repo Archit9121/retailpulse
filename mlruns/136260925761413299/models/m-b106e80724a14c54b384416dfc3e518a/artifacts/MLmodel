@@ -1,0 +1,22 @@
+artifact_path: file:D:\retailpulse\mlruns/136260925761413299/models/m-b106e80724a14c54b384416dfc3e518a/artifacts
+flavors:
+  python_function:
+    data: model.ubj
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.14.5
+  xgboost:
+    code: null
+    data: model.ubj
+    model_class: xgboost.sklearn.XGBClassifier
+    model_format: ubj
+    xgb_version: 3.3.0
+mlflow_version: 3.14.0
+model_id: m-b106e80724a14c54b384416dfc3e518a
+model_size_bytes: 113758
+model_uuid: m-b106e80724a14c54b384416dfc3e518a
+prompts: null
+run_id: c1474b32afd749b99b2a9e4cabd59ab0
+utc_time_created: '2026-07-04 03:36:14.628491'

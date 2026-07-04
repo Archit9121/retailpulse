@@ -4,6 +4,7 @@ from __future__ import annotations
 
 
 import os
+import shutil
 from pathlib import Path
 
 os.environ.setdefault("MLFLOW_ALLOW_FILE_STORE", "true")
@@ -25,6 +26,9 @@ from src.models.forecasting import (
 ROOT_DIR = Path(__file__).resolve().parents[2]
 TARGET_COLUMN = "quantity"
 TEST_DAYS = 56
+LOCAL_PROPHET_MODEL_DIR = (
+    ROOT_DIR / "data" / "features" / "forecast_artifacts" / "models" / "prophet_model"
+)
 
 # Hyperparameter
 SWEEP_CONFIGS = [
@@ -82,6 +86,10 @@ def main() -> None:
         mlflow.log_metric("best_rmse", best["rmse"])
         mlflow.log_metric("best_vs_naive_mape_delta", best["mape"] - naive_metrics["mape"])
         mlflow.prophet.log_model(best["model"], name="prophet_model")
+        if LOCAL_PROPHET_MODEL_DIR.exists():
+            shutil.rmtree(LOCAL_PROPHET_MODEL_DIR)
+        LOCAL_PROPHET_MODEL_DIR.parent.mkdir(parents=True, exist_ok=True)
+        mlflow.prophet.save_model(best["model"], path=str(LOCAL_PROPHET_MODEL_DIR))
         
        
         write_forecast_artifacts(test_df, best["forecast"]["yhat"], naive)

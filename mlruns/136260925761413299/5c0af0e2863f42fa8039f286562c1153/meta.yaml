@@ -1,0 +1,14 @@
+artifact_uri: file:D:\retailpulse\mlruns/136260925761413299/5c0af0e2863f42fa8039f286562c1153/artifacts
+end_time: 1783136283387
+entry_point_name: ''
+experiment_id: '136260925761413299'
+lifecycle_stage: active
+run_id: 5c0af0e2863f42fa8039f286562c1153
+run_name: day11_churn_tuning
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783136261796
+status: 3
+tags: []
+user_id: asus

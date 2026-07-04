@@ -83,51 +83,70 @@ def _load_model_evolution() -> tuple[pd.DataFrame, pd.DataFrame]:
     mlflow.set_tracking_uri(f"file:{ROOT_DIR / 'mlruns'}")
 
     churn_exp = mlflow.get_experiment_by_name("churn_prediction")
-    churn_runs = mlflow.search_runs(
-        experiment_ids=[churn_exp.experiment_id], order_by=["start_time ASC"]
-    )
-    day9 = churn_runs[churn_runs["tags.mlflow.runName"] == "day9_churn_xgboost"][
-        "metrics.best_auc_roc"
-    ].dropna()
-    day11 = churn_runs[churn_runs["tags.mlflow.runName"] == "day11_churn_tuning"][
-        "metrics.best_test_auc"
-    ].dropna()
-    churn_evolution = pd.DataFrame(
-        {
-            "stage": ["manual sweep", "Optuna + features"],
-            "auc_roc": [day9.iloc[-1], day11.iloc[-1]],
-        }
-    )
+    churn_evolution = pd.DataFrame(columns=["stage", "auc_roc"])
+    if churn_exp is not None:
+        try:
+            churn_runs = mlflow.search_runs(
+                experiment_ids=[churn_exp.experiment_id], order_by=["start_time ASC"]
+            )
+            day9 = churn_runs[churn_runs["tags.mlflow.runName"] == "day9_churn_xgboost"][
+                "metrics.best_auc_roc"
+            ].dropna()
+            day11 = churn_runs[churn_runs["tags.mlflow.runName"] == "day11_churn_tuning"][
+                "metrics.best_test_auc"
+            ].dropna()
+            if not day9.empty and not day11.empty:
+                churn_evolution = pd.DataFrame(
+                    {
+                        "stage": ["manual sweep", "Optuna + features"],
+                        "auc_roc": [day9.iloc[-1], day11.iloc[-1]],
+                    }
+                )
+        except Exception:
+            pass
 
     forecast_exp = mlflow.get_experiment_by_name("demand_forecasting")
-    forecast_runs = mlflow.search_runs(
-        experiment_ids=[forecast_exp.experiment_id], order_by=["start_time ASC"]
-    )
-    day5 = forecast_runs[forecast_runs["tags.mlflow.runName"] == "day5_prophet_baseline"][
-        "metrics.best_mape"
-    ].dropna()
-    day6 = forecast_runs[forecast_runs["tags.mlflow.runName"] == "day6_lstm_baseline"][
-        "metrics.best_mape"
-    ].dropna()
-    day8 = forecast_runs[forecast_runs["tags.mlflow.runName"] == "day8_ensemble"][
-        "metrics.best_ensemble_mape"
-    ].dropna()
-    forecast_evolution = pd.DataFrame(
-        {
-            "stage": ["Prophet", "LSTM", "Ensemble"],
-            "mape": [day5.iloc[-1], day6.iloc[-1], day8.iloc[-1]],
-        }
-    )
+    forecast_evolution = pd.DataFrame(columns=["stage", "mape"])
+    if forecast_exp is not None:
+        try:
+            forecast_runs = mlflow.search_runs(
+                experiment_ids=[forecast_exp.experiment_id], order_by=["start_time ASC"]
+            )
+            day5 = forecast_runs[
+                forecast_runs["tags.mlflow.runName"] == "day5_prophet_baseline"
+            ]["metrics.best_mape"].dropna()
+            day6 = forecast_runs[forecast_runs["tags.mlflow.runName"] == "day6_lstm_baseline"][
+                "metrics.best_mape"
+            ].dropna()
+            day8 = forecast_runs[forecast_runs["tags.mlflow.runName"] == "day8_ensemble"][
+                "metrics.best_ensemble_mape"
+            ].dropna()
+            if not day5.empty and not day6.empty and not day8.empty:
+                forecast_evolution = pd.DataFrame(
+                    {
+                        "stage": ["Prophet", "LSTM", "Ensemble"],
+                        "mape": [day5.iloc[-1], day6.iloc[-1], day8.iloc[-1]],
+                    }
+                )
+        except Exception:
+            pass
+
     return churn_evolution, forecast_evolution
 
 
 churn_evolution, forecast_evolution = _load_model_evolution()
 col1, col2 = st.columns(2)
 with col1:
-    st.bar_chart(churn_evolution.set_index("stage"), color="#2A6F6F")
+    if churn_evolution.empty:
+        st.info("No churn model evolution history found yet.")
+    else:
+        st.bar_chart(churn_evolution.set_index("stage"), color="#2A6F6F")
     
 with col2:
-    st.bar_chart(forecast_evolution.set_index("stage"), color="#C44E52")
+    if forecast_evolution.empty:
+        st.info("No demand model evolution history found yet.")
+    else:
+        st.bar_chart(forecast_evolution.set_index("stage"), color="#C44E52")
 
 st.divider()
 

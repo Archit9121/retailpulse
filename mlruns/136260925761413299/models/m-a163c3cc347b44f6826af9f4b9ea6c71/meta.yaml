@@ -1,0 +1,10 @@
+artifact_location: file:D:\retailpulse\mlruns/136260925761413299/models/m-a163c3cc347b44f6826af9f4b9ea6c71/artifacts
+creation_timestamp: 1783136273642
+experiment_id: '136260925761413299'
+last_updated_timestamp: 1783136278533
+model_id: m-a163c3cc347b44f6826af9f4b9ea6c71
+model_type: null
+name: tuned_churn_model
+source_run_id: 5c0af0e2863f42fa8039f286562c1153
+status: 2
+status_message: null

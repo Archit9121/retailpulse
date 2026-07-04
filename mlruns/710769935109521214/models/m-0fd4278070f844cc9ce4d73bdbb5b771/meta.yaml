@@ -1,0 +1,10 @@
+artifact_location: file:D:\retailpulse\mlruns/710769935109521214/models/m-0fd4278070f844cc9ce4d73bdbb5b771/artifacts
+creation_timestamp: 1783136095953
+experiment_id: '710769935109521214'
+last_updated_timestamp: 1783136103742
+model_id: m-0fd4278070f844cc9ce4d73bdbb5b771
+model_type: null
+name: lstm_model
+source_run_id: cddc99d17e6e4be28a252d9370bbf269
+status: 2
+status_message: null

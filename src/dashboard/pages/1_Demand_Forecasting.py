@@ -25,6 +25,10 @@ from src.dashboard.data_loader import (  # noqa: E402
     load_forecast_comparison,
 )
 
+LOCAL_PROPHET_MODEL_DIR = (
+    ROOT_DIR / "data" / "features" / "forecast_artifacts" / "models" / "prophet_model"
+)
+
 st.set_page_config(page_title="Demand Forecasting — RetailPulse", page_icon="📈", layout="wide")
 st.title("📈 Demand Forecasting")
 
@@ -94,19 +98,29 @@ st.subheader("Future prediction")
 
 @st.cache_resource
 def _load_prophet_model():
+    if LOCAL_PROPHET_MODEL_DIR.exists():
+        try:
+            return mlflow.prophet.load_model(str(LOCAL_PROPHET_MODEL_DIR))
+        except Exception:
+            # Fall back to MLflow tracking lookup if the local artifact is invalid.
+            pass
+
     mlflow.set_tracking_uri(f"file:{ROOT_DIR / 'mlruns'}")
     experiment = mlflow.get_experiment_by_name("demand_forecasting")
     if experiment is None:
         return None
-    runs = mlflow.search_runs(
-        experiment_ids=[experiment.experiment_id],
-        filter_string="tags.mlflow.runName = 'day5_prophet_baseline'",
-        order_by=["start_time DESC"],
-        max_results=1,
-    )
-    if runs.empty:
+    try:
+        runs = mlflow.search_runs(
+            experiment_ids=[experiment.experiment_id],
+            filter_string="tags.mlflow.runName = 'day5_prophet_baseline'",
+            order_by=["start_time DESC"],
+            max_results=1,
+        )
+        if runs.empty:
+            return None
+        return mlflow.prophet.load_model(f"runs:/{runs.iloc[0]['run_id']}/prophet_model")
+    except Exception:
         return None
-    return mlflow.prophet.load_model(f"runs:/{runs.iloc[0]['run_id']}/prophet_model")
 
 
 model = _load_prophet_model()
